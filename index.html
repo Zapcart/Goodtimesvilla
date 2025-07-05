@@ -658,15 +658,15 @@
     <script>
         // Booking Form
         function bookProperty() {
-            const name = document.getElementById('name').value;
-            const location = document.getElementById('location').value;
+            const name = document.getElementById('name').value.trim();
+            const location = document.getElementById('location').value.trim();
             const duration = document.getElementById('duration').value;
             const checkin = document.getElementById('checkin').value;
             const message = document.getElementById('message');
 
             if (!name || !location || !duration || !checkin) {
                 message.textContent = 'Please fill all fields.';
-                message.classList.remove('hidden');
+                message.classList.remove('hidden', 'text-green-600');
                 message.classList.add('text-red-600');
                 return;
             }
@@ -675,19 +675,21 @@
             const checkinDate = new Date(checkin);
             if (checkinDate < today) {
                 message.textContent = 'Check-in date must be today or later.';
-                message.classList.remove('hidden');
+                message.classList.remove('hidden', 'text-green-600');
                 message.classList.add('text-red-600');
                 return;
             }
 
-            const whatsappMessage = `New Booking Request%0AName: ${name}%0ALocation: ${location}%0ADuration: ${duration} day(s)%0ACheck-in: ${checkin}`;
-            const whatsappUrl = `https://api.whatsapp.com/send?phone=919137022283&text=${encodeURIComponent(whatsappMessage)}`;
+            const whatsappMessage = `Property Inquiry%0ABooking Request%0AName: ${encodeURIComponent(name)}%0ALocation: ${encodeURIComponent(location)}%0ADuration: ${duration} Days%0ACheck-in: ${checkin}`;
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=919137022283&text=${whatsappMessage}`;
 
-            message.textContent = `Redirecting to WhatsApp...`;
+            message.textContent = `Redirecting to WhatsApp with:%0A${whatsappMessage.replace(/%0A/g, '\n')}`;
             message.classList.remove('hidden', 'text-red-600');
             message.classList.add('text-green-600');
 
-            window.location.href = whatsappUrl;
+            setTimeout(() => {
+                window.location.href = whatsappUrl;
+            }, 1000); // Delay for user to see confirmation
         }
 
         // Scroll-triggered animations
@@ -776,7 +778,7 @@
         // Form Field Highlighting
         document.querySelectorAll('.form-group input, .form-group select').forEach(input => {
             input.addEventListener('input', () => {
-                input.parentElement.classList.toggle('filled', input.value !== '');
+                input.parentElement.classList.toggle('filled', input.value.trim() !== '');
             });
         });
     </script>
