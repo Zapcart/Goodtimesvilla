@@ -5,35 +5,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Good Time Properties</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         /* General Reset and Font */
+        :root {
+            --primary-bg: #f5f0e8;
+            --secondary-bg: #ffffff;
+            --text-color: #1a1a1a;
+            --accent-color: #d4a373;
+            --accent-hover: #b8860b;
+            --header-bg: rgba(10, 25, 47, 0.95);
+        }
+        [data-theme="dark"] {
+            --primary-bg: #1a1a1a;
+            --secondary-bg: #2d2d2d;
+            --text-color: #e0e0e0;
+            --header-bg: rgba(5, 15, 30, 0.95);
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Playfair Display', serif;
         }
         html {
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
         body {
-            background-color: #f8f1e9;
-            color: #2d2d2d;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--header-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+        #preloader.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader {
+            border: 4px solid #fff;
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Header */
         header {
-            background: linear-gradient(to right, rgba(22, 78, 99, 0.95), rgba(22, 78, 99, 0.85));
+            background: linear-gradient(to right, var(--header-bg), rgba(10, 25, 47, 0.85));
             color: #fff;
             padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 2px solid #f28c38;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-bottom: 2px solid var(--accent-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
         header .container {
             max-width: 1200px;
@@ -44,35 +91,37 @@
             padding: 0 1rem;
         }
         header h1 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
+            letter-spacing: 1px;
             transition: text-shadow 0.3s ease;
         }
         header h1:hover {
-            text-shadow: 0 0 10px #f28c38, 0 0 20px #f28c38;
+            text-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
         }
         header nav ul {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
+            gap: 2rem;
         }
         header nav a {
             color: #fff;
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 500;
             position: relative;
             transition: color 0.3s ease;
+            font-family: 'Poppins', sans-serif;
         }
         header nav a:hover {
-            color: #f28c38;
+            color: var(--accent-color);
         }
         header nav a::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
-            background-color: #f28c38;
+            background-color: var(--accent-color);
             bottom: -4px;
             left: 0;
             transition: width 0.3s ease;
@@ -89,12 +138,24 @@
         #menu-toggle {
             display: none;
         }
+        #theme-toggle {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        #theme-toggle:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
         @media (max-width: 768px) {
             header .container {
                 padding: 0 0.5rem;
             }
             header h1 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
             .hamburger {
                 display: block;
@@ -105,7 +166,7 @@
                 position: absolute;
                 top: 100%;
                 left: 0;
-                background: #164e63;
+                background: var(--header-bg);
                 padding: 1rem;
             }
             header nav ul {
@@ -121,18 +182,30 @@
             #menu-toggle:checked ~ nav {
                 display: block;
             }
+            #theme-toggle {
+                font-size: 1rem;
+            }
         }
 
         /* Hero Section */
         #home {
             position: relative;
-            height: 60vh;
-            background: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2') center/cover no-repeat fixed;
+            height: 80vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: #fff;
+            overflow: hidden;
+        }
+        #home video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
         }
         #home::before {
             content: '';
@@ -141,8 +214,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(22, 78, 99, 0.7);
-            animation: fadeInOverlay 1.5s ease-out;
+            background: rgba(10, 25, 47, 0.7);
+            z-index: 0;
         }
         #home .container {
             position: relative;
@@ -151,44 +224,50 @@
             padding: 1rem;
         }
         #home h2 {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
-            animation: typing 3s steps(30) infinite, slideIn 1s ease-out;
-            white-space: nowrap;
-            overflow: hidden;
+            margin-bottom: 1.5rem;
+            animation: slideIn 1s ease-out;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
         #home p {
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-family: 'Poppins', sans-serif;
         }
         #home a {
-            background-color: #f28c38;
+            background-color: var(--accent-color);
             color: #fff;
-            padding: 0.8rem 1.5rem;
+            padding: 1.2rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            font-family: 'Poppins', sans-serif;
         }
         #home a:hover {
-            background-color: #e76f51;
+            background-color: var(--accent-hover);
             transform: scale(1.1);
         }
         @media (max-width: 768px) {
             #home {
-                height: 50vh;
+                height: 60vh;
+                background: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2') center/cover no-repeat fixed;
+            }
+            #home video {
+                display: none;
             }
             #home h2 {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
             }
             #home p {
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
             #home a {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.8rem;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
             }
         }
 
@@ -197,37 +276,35 @@
             from { opacity: 0; transform: translateY(50px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        @keyframes typing {
-            0% { width: 0; }
-            50% { width: 100%; }
-            100% { width: 0; }
-        }
-        @keyframes fadeInOverlay {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
             animation: slideIn 0.8s ease-out forwards;
         }
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
 
         /* Properties Section - Carousel */
         #properties {
-            padding: 3rem 0;
-            background-color: #fff;
+            padding: 5rem 0;
+            background-color: var(--secondary-bg);
         }
         #properties .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 1rem;
         }
         #properties h2 {
-            font-size: 2rem;
+            font-size: 3rem;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 2rem;
-            color: #164e63;
+            margin-bottom: 2.5rem;
+            color: #0a192f;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         .carousel {
             position: relative;
@@ -239,19 +316,68 @@
         }
         .carousel-item {
             flex: 0 0 33.33%;
-            padding: 0 0.5rem;
+            padding: 0 0.75rem;
+            position: relative;
+            cursor: pointer;
         }
         .carousel-item img {
             width: 100%;
-            height: 300px;
+            height: 400px;
             object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .carousel-item img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        .carousel-item:hover img {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        .carousel-item .caption {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            background: rgba(10, 25, 47, 0.85);
+            color: #fff;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+        .carousel-item .price-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .carousel-item .book-btn {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-color);
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .carousel-item:hover .book-btn {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+        .carousel-item .book-btn:hover {
+            background: var(--accent-hover);
         }
         .carousel-controls {
             position: absolute;
@@ -262,270 +388,454 @@
             transform: translateY(-50%);
         }
         .carousel-controls button {
-            background: rgba(22, 78, 99, 0.8);
+            background: rgba(10, 25, 47, 0.85);
             color: #fff;
             border: none;
-            padding: 0.3rem 0.8rem;
+            padding: 0.7rem 1.2rem;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.8rem;
             transition: background-color 0.3s ease;
         }
         .carousel-controls button:hover {
-            background: #f28c38;
+            background: var(--accent-color);
         }
         .carousel-pause {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(22, 78, 99, 0.8);
+            bottom: 15px;
+            right: 15px;
+            background: rgba(10, 25, 47, 0.85);
             color: #fff;
             border: none;
-            padding: 0.3rem 0.8rem;
+            padding: 0.5rem 1rem;
             cursor: pointer;
             border-radius: 5px;
             font-size: 1rem;
             transition: background-color 0.3s ease;
         }
         .carousel-pause:hover {
-            background: #f28c38;
+            background: var(--accent-color);
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+        .carousel-indicators span {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .carousel-indicators span.active {
+            background: var(--accent-color);
         }
         @media (max-width: 768px) {
             .carousel-item {
                 flex: 0 0 100%;
             }
             .carousel-item img {
-                height: 200px;
+                height: 300px;
+            }
+            .carousel-item .caption {
+                font-size: 0.9rem;
+            }
+            .carousel-item .price-tag {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+            }
+            .carousel-item .book-btn {
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
             }
             .carousel-controls button {
-                padding: 0.2rem 0.6rem;
-                font-size: 1rem;
+                padding: 0.5rem 1rem;
+                font-size: 1.5rem;
             }
             .carousel-pause {
-                padding: 0.2rem 0.6rem;
-                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            .carousel-indicators span {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        /* Modal for Property Details */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: var(--secondary-bg);
+            color: var(--text-color);
+            max-width: 550px;
+            width: 90%;
+            padding: 2.5rem;
+            border-radius: 15px;
+            position: relative;
+            animation: slideIn 0.3s ease-out;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        .modal-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+            color: #0a192f;
+            font-weight: 700;
+        }
+        .modal-content p {
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .modal-content button {
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .modal-content button:hover {
+            background: var(--accent-hover);
+        }
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 1.5rem;
+            }
+            .modal-content h3 {
+                font-size: 1.5rem;
+            }
+            .modal-content p {
+                font-size: 0.9rem;
             }
         }
 
         /* Booking Form */
         #book {
-            padding: 3rem 0;
-            background: linear-gradient(135deg, #e6e8e6, #f8f1e9);
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #e6e8e6, #f5f0e8);
         }
         #book .container {
-            max-width: 90%;
+            max-width: 700px;
             margin: 0 auto;
             padding: 0 1rem;
         }
         #book h2 {
-            font-size: 2rem;
+            font-size: 3rem;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 1.5rem;
-            color: #164e63;
+            margin-bottom: 2.5rem;
+            color: #0a192f;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         .form-card {
-            background-color: #fff;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: var(--secondary-bg);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
         }
         .form-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
         }
         .form-group {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             position: relative;
         }
         .form-group label {
             display: block;
             font-weight: 600;
-            color: #164e63;
-            margin-bottom: 0.3rem;
-            font-size: 0.9rem;
+            color: #0a192f;
+            margin-bottom: 0.6rem;
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
         }
         .form-group input,
         .form-group select {
             width: 100%;
-            padding: 0.6rem;
+            padding: 1rem;
             border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 0.9rem;
+            border-radius: 8px;
+            font-size: 1rem;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-family: 'Poppins', sans-serif;
         }
         .form-group input:focus,
         .form-group select:focus {
-            border-color: #f28c38;
-            box-shadow: 0 0 5px rgba(242, 140, 56, 0.3);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 5px rgba(212, 163, 115, 0.3);
             outline: none;
         }
         .form-group.filled input,
         .form-group.filled select {
-            border-color: #f28c38;
-            background-color: #fff5eb;
+            border-color: var(--accent-color);
+            background-color: #fffaf0;
+        }
+        .form-group.error input,
+        .form-group.error select {
+            border-color: #dc2626;
+        }
+        .form-group .error-message {
+            color: #dc2626;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+            font-family: 'Poppins', sans-serif;
+        }
+        .form-group.error .error-message {
+            display: block;
         }
         .form-group button {
             width: 100%;
-            padding: 0.8rem;
-            background-color: #f28c38;
+            padding: 1.2rem;
+            background-color: var(--accent-color);
             color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
         }
         .form-group button:hover {
-            background-color: #e76f51;
+            background-color: var(--accent-hover);
             transform: scale(1.05);
+        }
+        .form-group button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .form-group button .spinner {
+            display: none;
+            border: 2px solid #fff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .form-group button.loading .spinner {
+            display: block;
+        }
+        .form-group button.loading span {
+            visibility: hidden;
         }
         #message {
             text-align: center;
-            margin-top: 0.8rem;
+            margin-top: 1rem;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        #message.text-red-600 {
+            color: #dc2626;
+        }
+        #message.text-green-600 {
+            color: #16a34a;
         }
         @media (max-width: 768px) {
             #book h2 {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
             }
             .form-card {
-                padding: 1rem;
+                padding: 1.5rem;
             }
             .form-group label {
-                font-size: 0.8rem;
+                font-size: 1rem;
             }
             .form-group input,
             .form-group select {
-                padding: 0.5rem;
-                font-size: 0.8rem;
+                padding: 0.8rem;
+                font-size: 0.9rem;
             }
             .form-group button {
-                padding: 0.6rem;
-                font-size: 0.8rem;
+                padding: 1rem;
+                font-size: 1rem;
             }
         }
 
         /* Contact Section */
         #contact {
-            padding: 3rem 0;
-            background-color: #fff;
+            padding: 5rem 0;
+            background-color: var(--secondary-bg);
         }
         #contact .container {
-            max-width: 90%;
+            max-width: 700px;
             margin: 0 auto;
             padding: 0 1rem;
+            text-align: center;
         }
         #contact h2 {
-            font-size: 2rem;
+            font-size: 3rem;
             font-weight: 700;
-            color: #164e63;
-            margin-bottom: 1.5rem;
+            color: #0a192f;
+            margin-bottom: 2.5rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         #contact p {
-            font-size: 1rem;
-            color: #4a4a4a;
-            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            color: var(--text-color);
+            margin-bottom: 1.2rem;
+            font-family: 'Poppins', sans-serif;
         }
         #contact i {
-            color: #f28c38;
-            margin-right: 0.5rem;
+            color: var(--accent-color);
+            margin-right: 0.6rem;
         }
         #contact a {
             display: inline-block;
-            background-color: #f28c38;
+            background-color: var(--accent-color);
             color: #fff;
-            padding: 0.6rem 1.2rem;
+            padding: 1rem 2rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
-            margin-top: 0.8rem;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
             transition: background-color 0.3s ease, transform 0.3s ease;
+            font-family: 'Poppins', sans-serif;
         }
         #contact a:hover {
-            background-color: #e76f51;
+            background-color: var(--accent-hover);
             transform: scale(1.05);
         }
         @media (max-width: 768px) {
             #contact h2 {
-                font-size: 1.8rem;
+                font-size: 2.2rem;
             }
             #contact p {
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
             #contact a {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
             }
         }
 
         /* Footer */
         footer {
-            background-color: #164e63;
+            background-color: #0a192f;
             color: #fff;
-            padding: 1.5rem;
+            padding: 2.5rem;
             text-align: center;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
+            font-family: 'Poppins', sans-serif;
         }
         .social-icons {
-            margin-top: 0.8rem;
+            margin-top: 1.5rem;
         }
         .social-icons a {
             color: #fff;
-            font-size: 1.2rem;
-            margin: 0 0.4rem;
+            font-size: 1.8rem;
+            margin: 0 0.6rem;
             transition: color 0.3s ease, transform 0.3s ease;
         }
         .social-icons a:hover {
-            color: #f28c38;
+            color: var(--accent-color);
             transform: scale(1.2);
         }
         @media (max-width: 768px) {
             footer {
-                padding: 1rem;
+                padding: 1.5rem;
             }
             .social-icons a {
-                font-size: 1rem;
-                margin: 0 0.3rem;
+                font-size: 1.4rem;
+                margin: 0 0.4rem;
             }
         }
 
         /* Back-to-Top Button */
         #back-to-top {
             position: fixed;
-            bottom: 15px;
-            right: 15px;
-            background: #f28c38;
+            bottom: 20px;
+            right: 20px;
+            background: var(--accent-color);
             color: #fff;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 1.2rem;
+            width: 50px;
+            height: 50px;
+            font-size: 1.6rem;
             cursor: pointer;
             display: none;
             transition: background-color 0.3s ease, transform 0.3s ease;
             z-index: 100;
         }
         #back-to-top:hover {
-            background: #e76f51;
+            background: var(--accent-hover);
             transform: scale(1.1);
         }
         #back-to-top.visible {
             display: block;
         }
+
+        /* Call Button */
+        #call-now {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: #25D366;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.6rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+        #call-now:hover {
+            background: #1ebe57;
+            transform: scale(1.1);
+        }
         @media (max-width: 768px) {
             #back-to-top {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
+                width: 45px;
+                height: 45px;
+                font-size: 1.4rem;
+            }
+            #call-now {
+                width: 45px;
+                height: 45px;
+                font-size: 1.4rem;
+                bottom: 75px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
     <!-- Header -->
     <header>
         <div class="container">
@@ -540,53 +850,87 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            <button id="theme-toggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section id="home">
+        <video autoplay muted loop playsinline>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-yacht-on-the-ocean-at-sunset-5437-large.mp4" type="video/mp4">
+        </video>
         <div class="container">
-            <h2>Discover Your Dream Escape</h2>
-            <p>Book luxurious properties for 1, 2, or 5 days at unbeatable prices!</p>
-            <a href="#book">Book Your Stay</a>
+            <h2>Elegance in Every Stay</h2>
+            <p>Indulge in luxurious properties for 1, 2, or 5 days at exclusive rates!</p>
+            <a href="#book">Reserve Your Escape</a>
         </div>
     </section>
 
     <!-- Property Listings - Carousel -->
-    <section id="properties" class="fade-in">
+    <section id="properties" class="fade-in parallax" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f7c4c60d');">
         <div class="container">
-            <h2>Our Premium Properties</h2>
+            <h2>Our Exquisite Properties</h2>
             <div class="carousel" id="carousel">
                 <div class="carousel-track">
-                    <div class="carousel-item">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Property 1">
+                    <div class="carousel-item" data-property="Luxury Villa - Goa" data-description="A stunning villa with ocean views, private pool, and modern amenities." data-price="₹15,000/night">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Luxury Villa">
+                        <div class="caption">Luxury Villa - Goa</div>
+                        <div class="price-tag">₹15,000/night</div>
+                        <button class="book-btn" onclick="selectProperty('Luxury Villa - Goa')">Book Now</button>
                     </div>
-                    <div class="carousel-item">
-                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Property 2">
+                    <div class="carousel-item" data-property="Beach House - Alibaug" data-description="Cozy beachfront house with direct access to sandy shores." data-price="₹12,000/night">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Beach House">
+                        <div class="caption">Beach House - Alibaug</div>
+                        <div class="price-tag">₹12,000/night</div>
+                        <button class="book-btn" onclick="selectProperty('Beach House - Alibaug')">Book Now</button>
                     </div>
-                    <div class="carousel-item">
-                        <img src="image1.png" alt="Property 3">
+                    <div class="carousel-item" data-property="Mountain Retreat - Lonavala" data-description="A serene retreat nestled in the hills with breathtaking views." data-price="₹10,000/night">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2" alt="Mountain Retreat">
+                        <div class="caption">Mountain Retreat - Lonavala</div>
+                        <div class="price-tag">₹10,000/night</div>
+                        <button class="book-btn" onclick="selectProperty('Mountain Retreat - Lonavala')">Book Now</button>
                     </div>
-                    <div class="carousel-item">
-                        <img src="image2.png" alt="Property 4">
+                    <div class="carousel-item" data-property="City Apartment - Mumbai" data-description="Modern apartment in the heart of the city with top amenities." data-price="₹8,000/night">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f7c4c60d" alt="City Apartment">
+                        <div class="caption">City Apartment - Mumbai</div>
+                        <div class="price-tag">₹8,000/night</div>
+                        <button class="book-btn" onclick="selectProperty('City Apartment - Mumbai')">Book Now</button>
                     </div>
-                    <div class="carousel-item">
-                        <img src="image3.png" alt="Property 5">
+                    <div class="carousel-item" data-property="Cozy Cottage - Matheran" data-description="Charming cottage surrounded by lush greenery." data-price="₹9,000/night">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Cozy Cottage">
+                        <div class="caption">Cozy Cottage - Matheran</div>
+                        <div class="price-tag">₹9,000/night</div>
+                        <button class="book-btn" onclick="selectProperty('Cozy Cottage - Matheran')">Book Now</button>
                     </div>
-                    <div class="carousel-item">
-                        <img src="image4.png" alt="Property 6">
+                    <div class="carousel-item" data-property="Seaside Villa - Daman" data-description="Luxurious villa with private beach access and stunning interiors." data-price="₹14,000/night">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Seaside Villa">
+                        <div class="caption">Seaside Villa - Daman</div>
+                        <div class="price-tag">₹14,000/night</div>
+                        <button class="book-btn" onclick="selectProperty('Seaside Villa - Daman')">Book Now</button>
                     </div>
-                    <div class="carousel-item">
-                        <img src="image5.png" alt="Property 7">
+                    <div class="carousel-item" data-property="Hilltop Bungalow - Mahabaleshwar" data-description="Spacious bungalow with panoramic hill views." data-price="₹11,000/night">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2" alt="Hilltop Bungalow">
+                        <div class="caption">Hilltop Bungalow - Mahabaleshwar</div>
+                        <div class="price-tag">₹11,000/night</div>
+                        <button class="book-btn" onclick="selectProperty('Hilltop Bungalow - Mahabaleshwar')">Book Now</button>
                     </div>
-                    <div class="carousel-item">
-                        <img src="image6.png" alt="Property 8">
+                    <div class="carousel-item" data-property="Urban Loft - Pune" data-description="Stylish loft with modern design in a vibrant city location." data-price="₹7,500/night">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f7c4c60d" alt="Urban Loft">
+                        <div class="caption">Urban Loft - Pune</div>
+                        <div class="price-tag">₹7,500/night</div>
+                        <button class="book-btn" onclick="selectProperty('Urban Loft - Pune')">Book Now</button>
                     </div>
-                    <div class="carousel-item">
-                        <img src="image7.png" alt="Property 9">
+                    <div class="carousel-item" data-property="Riverside Retreat - Nashik" data-description="Peaceful retreat by the river with lush surroundings." data-price="₹10,500/night">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Riverside Retreat">
+                        <div class="caption">Riverside Retreat - Nashik</div>
+                        <div class="price-tag">₹10,500/night</div>
+                        <button class="book-btn" onclick="selectProperty('Riverside Retreat - Nashik')">Book Now</button>
                     </div>
-                    <div class="carousel-item">
-                        <img src="image8.png" alt="Property 10">
+                    <div class="carousel-item" data-property="Countryside Villa - Igatpuri" data-description="Elegant villa in a tranquil countryside setting." data-price="₹13,000/night">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Countryside Villa">
+                        <div class="caption">Countryside Villa - Igatpuri</div>
+                        <div class="price-tag">₹13,000/night</div>
+                        <button class="book-btn" onclick="selectProperty('Countryside Villa - Igatpuri')">Book Now</button>
                     </div>
                 </div>
                 <div class="carousel-controls">
@@ -594,40 +938,57 @@
                     <button onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
                 </div>
                 <button class="carousel-pause" onclick="togglePause()"><i class="fas fa-pause"></i></button>
+                <div class="carousel-indicators"></div>
             </div>
         </div>
     </section>
 
     <!-- Booking Form -->
-    <section id="book" class="fade-in">
+    <section id="book" class="fade-in parallax" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c');">
         <div class="container">
-            <h2>Reserve Your Stay</h2>
+            <h2>Reserve Your Luxury Stay</h2>
             <div class="form-card">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" placeholder="Enter your full name">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name" required>
+                    <span class="error-message">Name must be at least 3 characters long</span>
                 </div>
                 <div class="form-group">
-                    <label for="location">Location</label>
-                    <input type="text" id="location" placeholder="Enter desired location">
+                    <label for="property">Select Property</label>
+                    <select id="property" required>
+                        <option value="">Select a property</option>
+                        <option value="Luxury Villa - Goa">Luxury Villa - Goa</option>
+                        <option value="Beach House - Alibaug">Beach House - Alibaug</option>
+                        <option value="Mountain Retreat - Lonavala">Mountain Retreat - Lonavala</option>
+                        <option value="City Apartment - Mumbai">City Apartment - Mumbai</option>
+                        <option value="Cozy Cottage - Matheran">Cozy Cottage - Matheran</option>
+                        <option value="Seaside Villa - Daman">Seaside Villa - Daman</option>
+                        <option value="Hilltop Bungalow - Mahabaleshwar">Hilltop Bungalow - Mahabaleshwar</option>
+                        <option value="Urban Loft - Pune">Urban Loft - Pune</option>
+                        <option value="Riverside Retreat - Nashik">Riverside Retreat - Nashik</option>
+                        <option value="Countryside Villa - Igatpuri">Countryside Villa - Igatpuri</option>
+                    </select>
+                    <span class="error-message">Please select a property</span>
                 </div>
                 <div class="form-group">
                     <label for="duration">Rental Duration</label>
-                    <select id="duration">
+                    <select id="duration" required>
                         <option value="">Select duration</option>
                         <option value="1">1 Day</option>
                         <option value="2">2 Days</option>
                         <option value="5">5 Days</option>
                     </select>
+                    <span class="error-message">Please select a duration</span>
                 </div>
                 <div class="form-group">
                     <label for="checkin">Check-in Date</label>
-                    <input type="date" id="checkin">
+                    <input type="date" id="checkin" required>
+                    <span class="error-message">Please select a valid future date</span>
                 </div>
                 <div class="form-group">
-                    <button onclick="bookProperty()">Book Now</button>
+                    <button id="book-btn" onclick="bookProperty()"><span>Book Now</span><div class="spinner"></div></button>
                 </div>
-                <p id="message" class="hidden"></p>
+                <p id="message"></p>
             </div>
         </div>
     </section>
@@ -635,8 +996,8 @@
     <!-- Contact Section -->
     <section id="contact" class="fade-in">
         <div class="container">
-            <h2>Contact Us</h2>
-            <p>Have questions? Reach out to our friendly team!</p>
+            <h2>Contact Our Concierge</h2>
+            <p>Our dedicated team is here to curate your perfect getaway!</p>
             <p><i class="fas fa-envelope"></i> goodtimesvilla88@gmail.com</p>
             <p><i class="fas fa-phone"></i> +91 9137022283</p>
             <a href="https://api.whatsapp.com/send?phone=919137022283&text=Hello%20Good%20Time%20Properties!%20I%20have%20a%20query." target="_blank" rel="noopener noreferrer">Chat with Us on WhatsApp</a>
@@ -655,42 +1016,109 @@
     <!-- Back-to-Top Button -->
     <button id="back-to-top" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
 
+    <!-- Call Button -->
+    <a href="tel:+919960824574" id="call-now" title="Call Now"><i class="fas fa-phone"></i></a>
+
+    <!-- Property Modal -->
+    <div class="modal" id="property-modal">
+        <div class="modal-content">
+            <h3 id="modal-title"></h3>
+            <p id="modal-description"></p>
+            <p id="modal-price"></p>
+            <button onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
     <script>
+        // Preloader
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.classList.add('fade-out');
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        });
+
         // Booking Form
         function bookProperty() {
             const name = document.getElementById('name').value.trim();
-            const location = document.getElementById('location').value.trim();
+            const property = document.getElementById('property').value;
             const duration = document.getElementById('duration').value;
             const checkin = document.getElementById('checkin').value;
             const message = document.getElementById('message');
+            const bookBtn = document.getElementById('book-btn');
 
-            if (!name || !location || !duration || !checkin) {
-                message.textContent = 'Please fill all fields.';
-                message.classList.remove('hidden', 'text-green-600');
-                message.classList.add('text-red-600');
-                return;
+            // Reset message and errors
+            message.textContent = '';
+            message.classList.remove('text-red-600', 'text-green-600');
+            document.querySelectorAll('.form-group').forEach(group => {
+                group.classList.remove('error');
+            });
+
+            // Validation
+            let isValid = true;
+            if (name.length < 3) {
+                document.getElementById('name').parentElement.classList.add('error');
+                isValid = false;
             }
-
+            if (!property) {
+                document.getElementById('property').parentElement.classList.add('error');
+                isValid = false;
+            }
+            if (!duration) {
+                document.getElementById('duration').parentElement.classList.add('error');
+                isValid = false;
+            }
             const today = new Date();
+            today.setHours(0, 0, 0, 0);
             const checkinDate = new Date(checkin);
-            if (checkinDate < today) {
-                message.textContent = 'Check-in date must be today or later.';
-                message.classList.remove('hidden', 'text-green-600');
+            if (!checkin || checkinDate < today) {
+                document.getElementById('checkin').parentElement.classList.add('error');
+                isValid = false;
+            }
+            if (!isValid) {
+                message.textContent = 'Please correct the errors above.';
                 message.classList.add('text-red-600');
                 return;
             }
 
-            const whatsappMessage = `Property Inquiry%0ABooking Request%0AName: ${encodeURIComponent(name)}%0ALocation: ${encodeURIComponent(location)}%0ADuration: ${duration} Days%0ACheck-in: ${checkin}`;
+            // Show loading state
+            bookBtn.disabled = true;
+            bookBtn.classList.add('loading');
+
+            // Format WhatsApp message
+            const whatsappMessage = `Property Inquiry%0AName: ${encodeURIComponent(name)}%0AProperty: ${encodeURIComponent(property)}%0ADuration: ${duration} Day${duration > 1 ? 's' : ''}%0ACheck-in: ${checkin}`;
             const whatsappUrl = `https://api.whatsapp.com/send?phone=919137022283&text=${whatsappMessage}`;
 
-            message.textContent = `Redirecting to WhatsApp with:%0A${whatsappMessage.replace(/%0A/g, '\n')}`;
-            message.classList.remove('hidden', 'text-red-600');
+            // Show confirmation
+            message.textContent = 'Redirecting to WhatsApp...';
             message.classList.add('text-green-600');
 
+            // Redirect after delay
             setTimeout(() => {
-                window.location.href = whatsappUrl;
-            }, 1000); // Delay for user to see confirmation
+                bookBtn.disabled = false;
+                bookBtn.classList.remove('loading');
+                window.open(whatsappUrl, '_blank');
+            }, 1500);
         }
+
+        // Real-time Form Validation
+        document.getElementById('name').addEventListener('input', function() {
+            const group = this.parentElement;
+            group.classList.toggle('error', this.value.trim().length < 3);
+        });
+        document.getElementById('property').addEventListener('change', function() {
+            this.parentElement.classList.toggle('error', !this.value);
+        });
+        document.getElementById('duration').addEventListener('change', function() {
+            this.parentElement.classList.toggle('error', !this.value);
+        });
+        document.getElementById('checkin').addEventListener('change', function() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            const checkinDate = new Date(this.value);
+            this.parentElement.classList.toggle('error', !this.value || checkinDate < today);
+        });
 
         // Scroll-triggered animations
         document.addEventListener('DOMContentLoaded', () => {
@@ -716,21 +1144,17 @@
         function updateCarousel() {
             const slideWidth = window.innerWidth <= 768 ? 100 : 100 / 3;
             track.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+            const indicators = carousel.querySelectorAll('.carousel-indicators span');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
         }
 
         function nextSlide() {
             if (window.innerWidth <= 768) {
-                if (currentSlide < totalSlides - 1) {
-                    currentSlide++;
-                } else {
-                    currentSlide = 0;
-                }
+                currentSlide = (currentSlide < totalSlides - 1) ? currentSlide + 1 : 0;
             } else {
-                if (currentSlide < totalSlides - 3) {
-                    currentSlide++;
-                } else {
-                    currentSlide = 0;
-                }
+                currentSlide = (currentSlide < totalSlides - 3) ? currentSlide + 1 : 0;
             }
             updateCarousel();
         }
@@ -756,11 +1180,74 @@
             }
         }
 
+        // Initialize Carousel Indicators
+        document.addEventListener('DOMContentLoaded', () => {
+            const indicatorsContainer = carousel.querySelector('.carousel-indicators');
+            for (let i = 0; i < (window.innerWidth <= 768 ? totalSlides : totalSlides - 2); i++) {
+                const span = document.createElement('span');
+                span.addEventListener('click', () => {
+                    currentSlide = i;
+                    updateCarousel();
+                });
+                indicatorsContainer.appendChild(span);
+            }
+            updateCarousel();
+        });
+
         // Auto-slide every 3 seconds
         autoSlideInterval = setInterval(nextSlide, 3000);
 
         // Update carousel on window resize
-        window.addEventListener('resize', updateCarousel);
+        window.addEventListener('resize', () => {
+            const indicatorsContainer = carousel.querySelector('.carousel-indicators');
+            indicatorsContainer.innerHTML = '';
+            for (let i = 0; i < (window.innerWidth <= 768 ? totalSlides : totalSlides - 2); i++) {
+                const span = document.createElement('span');
+                span.addEventListener('click', () => {
+                    currentSlide = i;
+                    updateCarousel();
+                });
+                indicatorsContainer.appendChild(span);
+            }
+            updateCarousel();
+        });
+
+        // Property Modal
+        document.querySelectorAll('.carousel-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (e.target.classList.contains('book-btn')) return; // Prevent modal when clicking book button
+                const modal = document.getElementById('property-modal');
+                const title = document.getElementById('modal-title');
+                const description = document.getElementById('modal-description');
+                const price = document.getElementById('modal-price');
+                title.textContent = item.dataset.property;
+                description.textContent = item.dataset.description;
+                price.textContent = `Price: ${item.dataset.price}`;
+                modal.style.display = 'flex';
+            });
+        });
+
+        function closeModal() {
+            document.getElementById('property-modal').style.display = 'none';
+        }
+
+        // Select Property from Carousel
+        function selectProperty(propertyName) {
+            document.getElementById('property').value = propertyName;
+            document.getElementById('property').parentElement.classList.add('filled');
+            document.getElementById('property').parentElement.classList.remove('error');
+            window.scrollTo({ top: document.getElementById('book').offsetTop, behavior: 'smooth' });
+        }
+
+        // Theme Toggle
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const body = document.body;
+            const currentTheme = body.dataset.theme === 'dark' ? 'light' : 'dark';
+            body.dataset.theme = currentTheme;
+            const icon = document.querySelector('#theme-toggle i');
+            icon.classList.toggle('fa-moon', currentTheme === 'light');
+            icon.classList.toggle('fa-sun', currentTheme === 'dark');
+        });
 
         // Back-to-Top Button
         const backToTop = document.getElementById('back-to-top');
