@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Good Time Properties</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         /* General Reset and Font */
         :root {
@@ -26,7 +26,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Cinzel', serif;
         }
         html {
             scroll-behavior: smooth;
@@ -38,6 +38,37 @@
             line-height: 1.6;
             overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            cursor: default;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+        }
+
+        /* Custom Cursor */
+        button, a[href="#book"], a[href^="tel"], a[href*="whatsapp"], .form-group input, .form-group select, header nav a {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="8" stroke="gold" stroke-width="2" fill="none"/></svg>') 16 16, auto;
+        }
+
+        /* Button Animations */
+        button, a.button, a[href="#book"], a[href^="tel"], a[href*="whatsapp"] {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        button:hover, a.button:hover, a[href="#book"]:hover, a[href^="tel"]:hover, a[href*="whatsapp"]:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.5);
+        }
+        button:active, a.button:active, a[href="#book"]:active, a[href^="tel"]:active, a[href*="whatsapp"]:active {
+            animation: bounce 0.2s ease;
+        }
+        @keyframes bounce {
+            0% { transform: scale(1.1); }
+            50% { transform: scale(0.95); }
+            100% { transform: scale(1); }
         }
 
         /* Preloader */
@@ -92,7 +123,6 @@
         }
         header h1 {
             font-size: 2rem;
-            font-weight: 700;
             letter-spacing: 1px;
             transition: text-shadow 0.3s ease;
         }
@@ -144,11 +174,8 @@
             color: #fff;
             font-size: 1.2rem;
             cursor: pointer;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        #theme-toggle:hover {
-            color: var(--accent-color);
-            transform: scale(1.1);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
         }
         @media (max-width: 768px) {
             header .container {
@@ -225,16 +252,20 @@
         }
         #home h2 {
             font-size: 3.5rem;
-            font-weight: 700;
             margin-bottom: 1.5rem;
-            animation: slideIn 1s ease-out;
+            animation: slideIn 1s ease-out, glow 2s ease-in-out infinite alternate;
             letter-spacing: 1px;
             text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
+            100% { text-shadow: 0 0 10px var(--accent-color), 0 2px 5px rgba(0, 0, 0, 0.3); }
         }
         #home p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
             font-family: 'Poppins', sans-serif;
+            font-weight: 300;
         }
         #home a {
             background-color: var(--accent-color);
@@ -242,14 +273,9 @@
             padding: 1.2rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 1.1rem;
-            transition: background-color 0.3s ease, transform 0.3s ease;
             font-family: 'Poppins', sans-serif;
-        }
-        #home a:hover {
-            background-color: var(--accent-hover);
-            transform: scale(1.1);
         }
         @media (max-width: 768px) {
             #home {
@@ -287,8 +313,11 @@
             background-size: cover;
             position: relative;
         }
+        .parallax-scroll {
+            transition: background-position 0.3s ease;
+        }
 
-        /* Properties Section - Carousel */
+        /* Properties Section - Carousel (Unchanged) */
         #properties {
             padding: 5rem 0;
             background-color: var(--secondary-bg);
@@ -300,7 +329,6 @@
         }
         #properties h2 {
             font-size: 3rem;
-            font-weight: 700;
             text-align: center;
             margin-bottom: 2.5rem;
             color: #0a192f;
@@ -346,10 +374,8 @@
             padding: 0.7rem 1.2rem;
             cursor: pointer;
             font-size: 1.8rem;
-            transition: background-color 0.3s ease;
-        }
-        .carousel-controls button:hover {
-            background: var(--accent-color);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
         }
         .carousel-pause {
             position: absolute;
@@ -362,10 +388,8 @@
             cursor: pointer;
             border-radius: 5px;
             font-size: 1rem;
-            transition: background-color 0.3s ease;
-        }
-        .carousel-pause:hover {
-            background: var(--accent-color);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
         }
         .carousel-indicators {
             position: absolute;
@@ -419,7 +443,6 @@
         }
         #book h2 {
             font-size: 3rem;
-            font-weight: 700;
             text-align: center;
             margin-bottom: 2.5rem;
             color: #0a192f;
@@ -440,28 +463,42 @@
             position: relative;
         }
         .form-group label {
-            display: block;
-            font-weight: 600;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-weight: 500;
             color: #0a192f;
-            margin-bottom: 0.6rem;
             font-size: 1.1rem;
             font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            pointer-events: none;
         }
         .form-group input,
         .form-group select {
             width: 100%;
-            padding: 1rem;
+            padding: 1.4rem 1rem 0.6rem;
             border: 1px solid #ccc;
             border-radius: 8px;
             font-size: 1rem;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
             font-family: 'Poppins', sans-serif;
+            font-weight: 300;
         }
         .form-group input:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group input:not(:placeholder-shown),
+        .form-group select:not(:placeholder-shown) {
             border-color: var(--accent-color);
             box-shadow: 0 0 5px rgba(212, 163, 115, 0.3);
             outline: none;
+        }
+        .form-group input:focus + label,
+        .form-group select:focus + label,
+        .form-group input:not(:placeholder-shown) + label,
+        .form-group select:not(:placeholder-shown) + label {
+            top: 0.3rem;
+            font-size: 0.8rem;
+            color: var(--accent-color);
         }
         .form-group.filled input,
         .form-group.filled select {
@@ -478,6 +515,7 @@
             margin-top: 0.3rem;
             display: none;
             font-family: 'Poppins', sans-serif;
+            font-weight: 300;
         }
         .form-group.error .error-message {
             display: block;
@@ -489,16 +527,11 @@
             color: #fff;
             border: none;
             border-radius: 8px;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 1.1rem;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
             position: relative;
             font-family: 'Poppins', sans-serif;
-        }
-        .form-group button:hover {
-            background-color: var(--accent-hover);
-            transform: scale(1.05);
         }
         .form-group button:disabled {
             background-color: #ccc;
@@ -506,16 +539,17 @@
         }
         .form-group button .spinner {
             display: none;
-            border: 2px solid #fff;
-            border-top: 2px solid transparent;
+            border: 3px solid transparent;
+            border-top: 3px solid var(--accent-hover);
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
+            width: 24px;
+            height: 24px;
+            animation: spin 0.8s ease-in-out infinite;
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
         }
         .form-group button.loading .spinner {
             display: block;
@@ -526,7 +560,7 @@
         #message {
             text-align: center;
             margin-top: 1rem;
-            font-weight: 500;
+            font-weight: 300;
             font-size: 1rem;
             font-family: 'Poppins', sans-serif;
         }
@@ -544,12 +578,19 @@
                 padding: 1.5rem;
             }
             .form-group label {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             .form-group input,
             .form-group select {
-                padding: 0.8rem;
+                padding: 1.2rem 0.8rem 0.4rem;
                 font-size: 0.9rem;
+            }
+            .form-group input:focus + label,
+            .form-group select:focus + label,
+            .form-group input:not(:placeholder-shown) + label,
+            .form-group select:not(:placeholder-shown) + label {
+                top: 0.2rem;
+                font-size: 0.7rem;
             }
             .form-group button {
                 padding: 1rem;
@@ -560,26 +601,40 @@
         /* Contact Section */
         #contact {
             padding: 5rem 0;
-            background-color: var(--secondary-bg);
+            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat fixed;
+            position: relative;
+        }
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.6);
+            z-index: 0;
         }
         #contact .container {
             max-width: 700px;
             margin: 0 auto;
             padding: 0 1rem;
             text-align: center;
+            position: relative;
+            z-index: 1;
         }
         #contact h2 {
             font-size: 3rem;
-            font-weight: 700;
-            color: #0a192f;
+            color: #fff;
             margin-bottom: 2.5rem;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
         #contact p {
             font-size: 1.2rem;
-            color: var(--text-color);
+            color: #fff;
             margin-bottom: 1.2rem;
             font-family: 'Poppins', sans-serif;
+            font-weight: 300;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         #contact i {
             color: var(--accent-color);
@@ -592,15 +647,10 @@
             padding: 1rem 2rem;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 1.1rem;
             margin-top: 1.5rem;
-            transition: background-color 0.3s ease, transform 0.3s ease;
             font-family: 'Poppins', sans-serif;
-        }
-        #contact a:hover {
-            background-color: var(--accent-hover);
-            transform: scale(1.05);
         }
         @media (max-width: 768px) {
             #contact h2 {
@@ -623,6 +673,7 @@
             text-align: center;
             font-size: 0.9rem;
             font-family: 'Poppins', sans-serif;
+            font-weight: 300;
         }
         .social-icons {
             margin-top: 1.5rem;
@@ -661,15 +712,19 @@
             font-size: 1.6rem;
             cursor: pointer;
             display: none;
-            transition: background-color 0.3s ease, transform 0.3s ease;
             z-index: 100;
-        }
-        #back-to-top:hover {
-            background: var(--accent-hover);
-            transform: scale(1.1);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
         }
         #back-to-top.visible {
             display: block;
+        }
+        @media (max-width: 768px) {
+            #back-to-top {
+                width: 45px;
+                height: 45px;
+                font-size: 1.4rem;
+            }
         }
 
         /* Call Button */
@@ -688,20 +743,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background-color 0.3s ease, transform 0.3s ease;
             z-index: 100;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-        }
-        #call-now:hover {
-            background: #1ebe57;
-            transform: scale(1.1);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
         }
         @media (max-width: 768px) {
-            #back-to-top {
-                width: 45px;
-                height: 45px;
-                font-size: 1.4rem;
-            }
             #call-now {
                 width: 45px;
                 height: 45px;
@@ -737,8 +784,8 @@
 
     <!-- Hero Section -->
     <section id="home">
-        <video autoplay muted loop playsinline>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-luxury-yacht-on-the-ocean-at-sunset-5437-large.mp4" type="video/mp4">
+        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-luxury-house-4352-large.mp4" type="video/mp4">
         </video>
         <div class="container">
             <h2>Elegance in Every Stay</h2>
@@ -747,7 +794,7 @@
         </div>
     </section>
 
-    <!-- Property Listings - Carousel -->
+    <!-- Property Listings - Carousel (Unchanged) -->
     <section id="properties" class="fade-in parallax" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f7c4c60d');">
         <div class="container">
             <h2>Our Exquisite Properties</h2>
@@ -800,14 +847,13 @@
             <h2>Reserve Your Luxury Stay</h2>
             <div class="form-card">
                 <div class="form-group">
+                    <input type="text" id="name" placeholder=" " required>
                     <label for="name">Full Name</label>
-                    <input type="text" id="name" placeholder="Enter your full name" required>
                     <span class="error-message">Name must be at least 3 characters long</span>
                 </div>
                 <div class="form-group">
-                    <label for="property">Select Location</label>
                     <select id="property" required>
-                        <option value="">Select a location</option>
+                        <option value="" disabled selected></option>
                         <option value="Goa">Goa</option>
                         <option value="Alibaug">Alibaug</option>
                         <option value="Lonavala">Lonavala</option>
@@ -821,21 +867,22 @@
                         <option value="Yeoor">Yeoor</option>
                         <option value="Igatpuri">Igatpuri</option>
                     </select>
+                    <label for="property">Select Location</label>
                     <span class="error-message">Please select a location</span>
                 </div>
                 <div class="form-group">
-                    <label for="duration">Rental Duration</label>
                     <select id="duration" required>
-                        <option value="">Select duration</option>
+                        <option value="" disabled selected></option>
                         <option value="1">1 Day</option>
                         <option value="2">2 Days</option>
                         <option value="5">5 Days</option>
                     </select>
+                    <label for="duration">Rental Duration</label>
                     <span class="error-message">Please select a duration</span>
                 </div>
                 <div class="form-group">
+                    <input type="date" id="checkin" placeholder=" " required>
                     <label for="checkin">Check-in Date</label>
-                    <input type="date" id="checkin" required>
                     <span class="error-message">Please select a valid future date</span>
                 </div>
                 <div class="form-group">
@@ -847,7 +894,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="fade-in">
+    <section id="contact" class="fade-in parallax-scroll">
         <div class="container">
             <h2>Contact Our Concierge</h2>
             <p>Our dedicated team is here to curate your perfect getaway!</p>
@@ -942,7 +989,7 @@
                 bookBtn.disabled = false;
                 bookBtn.classList.remove('loading');
                 window.open(whatsappUrl, '_blank');
-            }, 1500);
+            }, 2000); // Increased delay for smoother animation
         }
 
         // Real-time Form Validation
@@ -974,6 +1021,18 @@
                 });
             }, { threshold: 0.1 });
             sections.forEach(section => observer.observe(section));
+        });
+
+        // Parallax Scroll Effect for Contact Section
+        window.addEventListener('scroll', () => {
+            const contactSection = document.getElementById('contact');
+            const scrollPosition = window.scrollY;
+            const sectionTop = contactSection.offsetTop;
+            const sectionHeight = contactSection.offsetHeight;
+            if (scrollPosition > sectionTop - window.innerHeight && scrollPosition < sectionTop + sectionHeight) {
+                const offset = (scrollPosition - sectionTop) * 0.2;
+                contactSection.style.backgroundPositionY = `${offset}px`;
+            }
         });
 
         // Carousel Controls
