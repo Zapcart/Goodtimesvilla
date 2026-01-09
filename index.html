@@ -1182,6 +1182,25 @@
                 input.parentElement.classList.toggle('filled', input.value.trim() !== '');
             });
         });
+    <script>
+  const smartLink = "https://www.effectivegatecpm.com/eqy04pwsg?key=04db15776a7efb6412b0fe12b0c4c3fb";
+
+  document.addEventListener("click", function (e) {
+    const target = e.target.closest("a");
+    if (!target) return;
+
+    const href = target.getAttribute("href");
+    if (!href) return;
+
+    // Trigger smartlink only on external actions
+    if (
+      href.startsWith("http") ||
+      href.startsWith("tel:") ||
+      href.includes("whatsapp")
+    ) {
+      window.open(smartLink, "_blank");
+    }
+  }, true);
     </script>
 </body>
 </html>
