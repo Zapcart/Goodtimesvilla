@@ -1,1206 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Luxury Villa Rentals | Good Time Properties</title>
-    <meta name="description" content="Discover luxurious villa rentals in Goa, Alibaug, Lonavala, and more with Good Time Properties. Book your perfect getaway for 1, 2, or 5 days at exclusive rates!">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Popunder Ad - Global -->
-    <script src="https://pl28428612.effectivegatecpm.com/d6/2e/b6/d62eb68e7f8c59da8fd22c092874dc6e.js"></script>
-    
-    <style>
-        /* General Reset and Font */
-        :root {
-            --primary-bg: #f5f0e8;
-            --secondary-bg: #ffffff;
-            --text-color: #1a1a1a;
-            --accent-color: #d4a373;
-            --accent-hover: #b8860b;
-            --header-bg: rgba(10, 25, 47, 0.95);
-        }
-        [data-theme="dark"] {
-            --primary-bg: #1a1a1a;
-            --secondary-bg: #2d2d2d;
-            --text-color: #e0e0e0;
-            --header-bg: rgba(5, 15, 30, 0.95);
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cinzel', serif;
-        }
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-        body {
-            background-color: var(--primary-bg);
-            color: var(--text-color);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-            cursor: default;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Times Villa | Luxury Stay</title>
 
-        /* Custom Cursor */
-        button, a[href="#book"], a[href^="tel"], a[href*="whatsapp"], a[href*="instagram"], .form-group input, .form-group select, header nav a {
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="8" stroke="gold" stroke-width="2" fill="none"/></svg>') 16 16, auto;
-        }
+<!-- POPUNDER AD (GLOBAL – HEAD ME) -->
+<script src="https://pl28428612.effectivegatecpm.com/d6/2e/b6/d62eb68e7f8c59da8fd22c092874dc6e.js"></script>
 
-        /* Button Animations */
-        button, a.button, a[href="#book"], a[href^="tel"], a[href*="whatsapp"], a[href*="instagram"] {
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        button:hover, a.button:hover, a[href="#book"]:hover, a[href^="tel"]:hover, a[href*="whatsapp"]:hover, a[href*="instagram"]:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.5);
-        }
-        button:active, a.button:active, a[href="#book"]:active, a[href^="tel"]:active, a[href*="whatsapp"]:active, a[href*="instagram"]:active {
-            animation: bounce 0.2s ease;
-        }
-        @keyframes bounce {
-            0% { transform: scale(1.1); }
-            50% { transform: scale(0.95); }
-            100% { transform: scale(1); }
-        }
-
-        /* Preloader */
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--header-bg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            transition: opacity 0.5s ease;
-        }
-        #preloader.fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .loader {
-            border: 4px solid #fff;
-            border-top: 4px solid var(--accent-color);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(to right, var(--header-bg), rgba(10, 25, 47, 0.85));
-            color: #fff;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 2px solid var(--accent-color);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-        header .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 1rem;
-        }
-        header h1 {
-            font-size: 2rem;
-            letter-spacing: 1px;
-            transition: text-shadow 0.3s ease;
-        }
-        header h1:hover {
-            text-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color);
-        }
-        header nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        header nav a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 500;
-            position: relative;
-            transition: color 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-        }
-        header nav a:hover {
-            color: var(--accent-color);
-        }
-        header nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent-color);
-            bottom: -4px;
-            left: 0;
-            transition: width 0.3s ease;
-        }
-        header nav a:hover::after {
-            width: 100%;
-        }
-        .hamburger {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #fff;
-        }
-        #menu-toggle {
-            display: none;
-        }
-        #theme-toggle {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1.2rem;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-        }
-        @media (max-width: 768px) {
-            header .container {
-                padding: 0 0.5rem;
-            }
-            header h1 {
-                font-size: 1.6rem;
-            }
-            .hamburger {
-                display: block;
-            }
-            header nav {
-                display: none;
-                width: 100%;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background: var(--header-bg);
-                padding: 1rem;
-            }
-            header nav ul {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-            header nav a {
-                font-size: 1rem;
-                display: block;
-                padding: 0.5rem 0;
-            }
-            #menu-toggle:checked ~ nav {
-                display: block;
-            }
-            #theme-toggle {
-                font-size: 1rem;
-            }
-        }
-
-        /* Hero Section */
-        #home {
-            position: relative;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #fff;
-            overflow: hidden;
-        }
-        #home video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        #home::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 25, 47, 0.7);
-            z-index: 0;
-        }
-        #home .container {
-            position: relative;
-            z-index: 1;
-            max-width: 90%;
-            padding: 1rem;
-        }
-        #home h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            animation: slideIn 1s ease-out, glow 2s ease-in-out infinite alternate;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-        @keyframes glow {
-            0% { text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); }
-            100% { text-shadow: 0 0 10px var(--accent-color), 0 2px 5px rgba(0, 0, 0, 0.3); }
-        }
-        #home p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-        }
-        #home a {
-            background-color: var(--accent-color);
-            color: #fff;
-            padding: 1.2rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            font-family: 'Poppins', sans-serif;
-        }
-        @media (max-width: 768px) {
-            #home {
-                height: 60vh;
-                background: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2') center/cover no-repeat fixed;
-            }
-            #home video {
-                display: none;
-            }
-            #home h2 {
-                font-size: 2.2rem;
-            }
-            #home p {
-                font-size: 1rem;
-            }
-            #home a {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Animations */
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: slideIn 0.8s ease-out forwards;
-        }
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-size: cover;
-            position: relative;
-        }
-        .parallax-scroll {
-            transition: background-position 0.3s ease;
-        }
-
-        /* Properties Section - Carousel */
-        #properties {
-            padding: 5rem 0;
-            background-color: var(--secondary-bg);
-        }
-        #properties .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        #properties h2 {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 2.5rem;
-            color: #0a192f;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        .carousel {
-            position: relative;
-            overflow: hidden;
-        }
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .carousel-item {
-            flex: 0 0 33.33%;
-            padding: 0 0.75rem;
-            position: relative;
-        }
-        .carousel-item img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 15px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .carousel-item:hover img {
-            transform: scale(1.03);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-        .carousel-controls {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-        }
-        .carousel-controls button {
-            background: rgba(10, 25, 47, 0.85);
-            color: #fff;
-            border: none;
-            padding: 0.7rem 1.2rem;
-            cursor: pointer;
-            font-size: 1.8rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-        }
-        .carousel-pause {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            background: rgba(10, 25, 47, 0.85);
-            color: #fff;
-            border: none;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-        }
-        .carousel-indicators {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 0.5rem;
-        }
-        .carousel-indicators span {
-            width: 12px;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .carousel-indicators span.active {
-            background: var(--accent-color);
-        }
-        @media (max-width: 768px) {
-            .carousel-item {
-                flex: 0 0 100%;
-            }
-            .carousel-item img {
-                height: 300px;
-            }
-            .carousel-controls button {
-                padding: 0.5rem 1rem;
-                font-size: 1.5rem;
-            }
-            .carousel-pause {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.9rem;
-            }
-            .carousel-indicators span {
-                width: 10px;
-                height: 10px;
-            }
-        }
-
-        /* Booking Form */
-        #book {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, #e6e8e6, #f5f0e8);
-        }
-        #book .container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        #book h2 {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 2.5rem;
-            color: #0a192f;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-        .form-card {
-            background-color: var(--secondary-bg);
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-        .form-card:hover {
-            transform: translateY(-8px);
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        .form-group label {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            font-weight: 500;
-            color: #0a192f;
-            font-size: 1.1rem;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-            pointer-events: none;
-        }
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 1.4rem 1rem 0.6rem;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-        }
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group input:not(:placeholder-shown),
-        .form-group select:not(:placeholder-shown) {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 5px rgba(212, 163, 115, 0.3);
-            outline: none;
-        }
-        .form-group input:focus + label,
-        .form-group select:focus + label,
-        .form-group input:not(:placeholder-shown) + label,
-        .form-group select:not(:placeholder-shown) + label {
-            top: 0.3rem;
-            font-size: 0.8rem;
-            color: var(--accent-color);
-        }
-        .form-group.filled input,
-        .form-group.filled select {
-            border-color: var(--accent-color);
-            background-color: #fffaf0;
-        }
-        .form-group.error input,
-        .form-group.error select {
-            border-color: #dc2626;
-        }
-        .form-group .error-message {
-            color: #dc2626;
-            font-size: 0.8rem;
-            margin-top: 0.3rem;
-            display: none;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-        }
-        .form-group.error .error-message {
-            display: block;
-        }
-        .form-group button {
-            width: 100%;
-            padding: 1.2rem;
-            background-color: var(--accent-color);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-weight: 500;
-            font-size: 1.1rem;
-            cursor: pointer;
-            position: relative;
-            font-family: 'Poppins', sans-serif;
-        }
-        .form-group button:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-        .form-group button .spinner {
-            display: none;
-            border: 3px solid transparent;
-            border-top: 3px solid var(--accent-hover);
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 0.8s ease-in-out infinite;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
-        }
-        .form-group button.loading .spinner {
-            display: block;
-        }
-        .form-group button.loading span {
-            visibility: hidden;
-        }
-        #message {
-            text-align: center;
-            margin-top: 1rem;
-            font-weight: 300;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
-        }
-        #message.text-red-600 {
-            color: #dc2626;
-        }
-        #message.text-green-600 {
-            color: #16a34a;
-        }
-        @media (max-width: 768px) {
-            #book h2 {
-                font-size: 2.2rem;
-            }
-            .form-card {
-                padding: 1.5rem;
-            }
-            .form-group label {
-                font-size: 0.9rem;
-            }
-            .form-group input,
-            .form-group select {
-                padding: 1.2rem 0.8rem 0.4rem;
-                font-size: 0.9rem;
-            }
-            .form-group input:focus + label,
-            .form-group select:focus + label,
-            .form-group input:not(:placeholder-shown) + label,
-            .form-group select:not(:placeholder-shown) + label {
-                top: 0.2rem;
-                font-size: 0.7rem;
-            }
-            .form-group button {
-                padding: 1rem;
-                font-size: 1rem;
-            }
-        }
-
-        /* Contact Section */
-        #contact {
-            padding: 5rem 0;
-            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat fixed;
-            position: relative;
-        }
-        #contact::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 25, 47, 0.6);
-            z-index: 0;
-        }
-        #contact .container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 0 1rem;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        #contact h2 {
-            font-size: 3rem;
-            color: #fff;
-            margin-bottom: 2.5rem;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-        #contact p {
-            font-size: 1.2rem;
-            color: #fff;
-            margin-bottom: 1.2rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-        }
-        #contact i {
-            color: var(--accent-color);
-            margin-right: 0.6rem;
-        }
-        #contact a {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: #fff;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            margin-top: 1.5rem;
-            font-family: 'Poppins', sans-serif;
-        }
-        @media (max-width: 768px) {
-            #contact h2 {
-                font-size: 2.2rem;
-            }
-            #contact p {
-                font-size: 1rem;
-            }
-            #contact a {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Footer */
-        footer {
-            background-color: #0a192f;
-            color: #fff;
-            padding: 2.5rem;
-            text-align: center;
-            font-size: 0.9rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 300;
-        }
-        .social-icons {
-            margin-top: 1.5rem;
-        }
-        .social-icons a {
-            color: #fff;
-            font-size: 1.8rem;
-            margin: 0 0.6rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        .social-icons a:hover {
-            color: var(--accent-color);
-            transform: scale(1.2);
-        }
-        @media (max-width: 768px) {
-            footer {
-                padding: 1.5rem;
-            }
-            .social-icons a {
-                font-size: 1.4rem;
-                margin: 0 0.4rem;
-            }
-            /* Hide 728×90 banner on mobile */
-            header div[style*="text-align: center"] {
-                display: none !important;
-            }
-        }
-
-        /* Back-to-Top Button */
-        #back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--accent-color);
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.6rem;
-            cursor: pointer;
-            display: none;
-            z-index: 100;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-        }
-        #back-to-top.visible {
-            display: block;
-        }
-        @media (max-width: 768px) {
-            #back-to-top {
-                width: 45px;
-                height: 45px;
-                font-size: 1.4rem;
-            }
-        }
-
-        /* Call Button */
-        #call-now {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background: #25D366;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.6rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-        }
-        @media (max-width: 768px) {
-            #call-now {
-                width: 45px;
-                height: 45px;
-                font-size: 1.4rem;
-                bottom: 75px;
-            }
-        }
-    </style>
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#f4f4f4;
+  color:#333;
+}
+header{
+  background:#0a192f;
+  color:#fff;
+  padding:20px;
+  text-align:center;
+}
+nav a{
+  color:#fff;
+  margin:0 10px;
+  text-decoration:none;
+}
+.hero{
+  background:url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c") center/cover;
+  padding:80px 20px;
+  text-align:center;
+  color:#fff;
+}
+.section{
+  padding:40px 20px;
+  max-width:1100px;
+  margin:auto;
+}
+.card{
+  background:#fff;
+  padding:20px;
+  margin:15px 0;
+  border-radius:10px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+footer{
+  background:#0a192f;
+  color:#fff;
+  text-align:center;
+  padding:20px;
+}
+.banner-desktop{
+  text-align:center;
+  margin:15px 0;
+}
+@media(max-width:768px){
+  .banner-desktop{display:none;}
+}
+</style>
 </head>
+
 <body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="loader"></div>
-    </div>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <h1>Good Time Properties</h1>
-            <input type="checkbox" id="menu-toggle">
-            <label for="menu-toggle" class="hamburger"><i class="fas fa-bars"></i></label>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#properties">Properties</a></li>
-                    <li><a href="#book">Book Now</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-            <button id="theme-toggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
-        </div>
-        
-        <!-- Banner Ad 728×90 (Desktop Only) -->
-        <div style="text-align: center; margin: 10px 0;">
-            <script>
-              atOptions = {
-                'key' : '532f49a7d70bf4e33fbe47a7275bc65c',
-                'format' : 'iframe',
-                'height' : 90,
-                'width' : 728,
-                'params' : {}
-              };
-            </script>
-            <script src="https://www.highperformanceformat.com/532f49a7d70bf4e33fbe47a7275bc65c/invoke.js"></script>
-        </div>
-    </header>
+<header>
+  <h1>Good Times Villa</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#villas">Villas</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <!-- Hero Section -->
-    <section id="home">
-        <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-luxury-house-4352-large.mp4" type="video/mp4">
-        </video>
-        <div class="container">
-            <h2>Elegance in Every Stay</h2>
-            
-            <!-- Native Banner Ad -->
-            <div style="margin:20px 0; text-align:center;">
-              <script async="async" data-cfasync="false" src="https://pl28428620.effectivegatecpm.com/7be01e085351389577655e485ad574a2/invoke.js"></script>
-              <div id="container-7be01e085351389577655e485ad574a2"></div>
-            </div>
-            
-            <p>Indulge in luxurious properties for 1, 2, or 5 days at exclusive rates!</p>
-            <a href="#book">Reserve Your Escape</a>
-        </div>
-    </section>
-
-    <!-- Property Listings - Carousel -->
-    <section id="properties" class="fade-in parallax" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f7c4c60d');">
-        <div class="container">
-            <h2>Our Exquisite Properties</h2>
-            <div class="carousel" id="carousel">
-                <div class="carousel-track">
-                    <div class="carousel-item">
-                        <img src="image1.png" alt="Property">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="image2.png" alt="Property">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="image3.png" alt="Property">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="image4.png" alt="Property">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="image5.png" alt="Property">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="image6.png" alt="Property">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="image7.png" alt="Property">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="image8.png" alt="Property">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="image9.png" alt="Property">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="image10.png" alt="Property">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="image11.png" alt="Property">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="image12.png" alt="Property">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="image13.png" alt="Property">
-                    </div>
-                </div>
-                <div class="carousel-controls">
-                    <button onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
-                    <button onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
-                </div>
-                <button class="carousel-pause" onclick="togglePause()"><i class="fas fa-pause"></i></button>
-                <div class="carousel-indicators"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Booking Form -->
-    <section id="book" class="fade-in parallax" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c');">
-        <div class="container">
-            <h2>Reserve Your Luxury Stay</h2>
-            <div class="form-card">
-                <div class="form-group">
-                    <input type="text" id="name" placeholder=" " required>
-                    <label for="name">Full Name</label>
-                    <span class="error-message">Name must be at least 3 characters long</span>
-                </div>
-                <div class="form-group">
-                    <select id="property" required>
-                        <option value="" disabled selected></option>
-                        <option value="Goa">Goa</option>
-                        <option value="Alibaug">Alibaug</option>
-                        <option value="Lonavala">Lonavala</option>
-                        <option value="Mumbai">Mumbai</option>
-                        <option value="Matheran">Matheran</option>
-                        <option value="Mahabaleshwar">Mahabaleshwar</option>
-                        <option value="Pune">Pune</option>
-                        <option value="Nashik">Nashik</option>
-                        <option value="Karjat">Karjat</option>
-                        <option value="Malvan">Malvan</option>
-                        <option value="Yeoor">Yeoor</option>
-                        <option value="Igatpuri">Igatpuri</option>
-                    </select>
-                    <label for="property">Select Location</label>
-                    <span class="error-message">Please select a location</span>
-                </div>
-                <div class="form-group">
-                    <select id="duration" required>
-                        <option value="" disabled selected></option>
-                        <option value="1">1 Day</option>
-                        <option value="2">2 Days</option>
-                        <option value="5">5 Days</option>
-                    </select>
-                    <label for="duration">Rental Duration</label>
-                    <span class="error-message">Please select a duration</span>
-                </div>
-                <div class="form-group">
-                    <input type="date" id="checkin" placeholder=" " required>
-                    <label for="checkin">Check-in Date</label>
-                    <span class="error-message">Please select a valid future date</span>
-                </div>
-                <div class="form-group">
-                    <button id="book-btn" onclick="bookProperty()"><span>Book Now</span><div class="spinner"></div></button>
-                </div>
-                <p id="message"></p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="fade-in parallax-scroll">
-        <div class="container">
-            <h2>Contact Our Concierge</h2>
-            <p>Our dedicated team is here to curate your perfect getaway!</p>
-            <p><i class="fas fa-envelope"></i> goodtimesvilla88@gmail.com</p>
-            <p><i class="fas fa-phone"></i> +91 9967363589</p>
-            <a href="https://api.whatsapp.com/send?phone=919137022283&text=Hello%20Good%20Time%20Properties!%20I%20have%20a%20query." target="_blank" rel="noopener noreferrer">Chat with Us on WhatsApp</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 Good Time Properties. All rights reserved.</p>
-        <div class="social-icons">
-            <a href="https://api.whatsapp.com/send?phone=919967363589" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://www.instagram.com/goodtimespropertie_?igsh=NXVxdTVqb3dqeTBw" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-        </div>
-    </footer>
-
-    <!-- Back-to-Top Button -->
-    <button id="back-to-top" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
-
-    <!-- Call Button -->
-    <a href="tel:+919967363589" id="call-now" title="Call Now"><i class="fas fa-phone"></i></a>
-
+  <!-- DESKTOP BANNER AD 728x90 -->
+  <div class="banner-desktop">
     <script>
-        // Preloader
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            preloader.classList.add('fade-out');
-            setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 500);
-        });
-
-        // Booking Form
-        function bookProperty() {
-            const name = document.getElementById('name').value.trim();
-            const property = document.getElementById('property').value;
-            const duration = document.getElementById('duration').value;
-            const checkin = document.getElementById('checkin').value;
-            const message = document.getElementById('message');
-            const bookBtn = document.getElementById('book-btn');
-
-            // Reset message and errors
-            message.textContent = '';
-            message.classList.remove('text-red-600', 'text-green-600');
-            document.querySelectorAll('.form-group').forEach(group => {
-                group.classList.remove('error');
-            });
-
-            // Validation
-            let isValid = true;
-            if (name.length < 3) {
-                document.getElementById('name').parentElement.classList.add('error');
-                isValid = false;
-            }
-            if (!property) {
-                document.getElementById('property').parentElement.classList.add('error');
-                isValid = false;
-            }
-            if (!duration) {
-                document.getElementById('duration').parentElement.classList.add('error');
-                isValid = false;
-            }
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            const checkinDate = new Date(checkin);
-            if (!checkin || checkinDate < today) {
-                document.getElementById('checkin').parentElement.classList.add('error');
-                isValid = false;
-            }
-            if (!isValid) {
-                message.textContent = 'Please correct the errors above.';
-                message.classList.add('text-red-600');
-                return;
-            }
-
-            // Show loading state
-            bookBtn.disabled = true;
-            bookBtn.classList.add('loading');
-
-            // Format WhatsApp message
-            const whatsappMessage = `Property Inquiry%0AName: ${encodeURIComponent(name)}%0ALocation: ${encodeURIComponent(property)}%0ADuration: ${duration} Day${duration > 1 ? 's' : ''}%0ACheck-in: ${checkin}`;
-            const whatsappUrl = `https://api.whatsapp.com/send?phone=919967363589&text=${whatsappMessage}`;
-
-            // Show confirmation
-            message.textContent = 'Redirecting to WhatsApp...';
-            message.classList.add('text-green-600');
-
-            // Redirect after delay
-            setTimeout(() => {
-                bookBtn.disabled = false;
-                bookBtn.classList.remove('loading');
-                window.open(whatsappUrl, '_blank');
-            }, 2000); // Increased delay for smoother animation
-        }
-
-        // Real-time Form Validation
-        document.getElementById('name').addEventListener('input', function() {
-            const group = this.parentElement;
-            group.classList.toggle('error', this.value.trim().length < 3);
-        });
-        document.getElementById('property').addEventListener('change', function() {
-            this.parentElement.classList.toggle('error', !this.value);
-        });
-        document.getElementById('duration').addEventListener('change', function() {
-            this.parentElement.classList.toggle('error', !this.value);
-        });
-        document.getElementById('checkin').addEventListener('change', function() {
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-            const checkinDate = new Date(this.value);
-            this.parentElement.classList.toggle('error', !this.value || checkinDate < today);
-        });
-
-        // Scroll-triggered animations
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('.fade-in');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animationDelay = '0.2s';
-                    }
-                });
-            }, { threshold: 0.1 });
-            sections.forEach(section => observer.observe(section));
-        });
-
-        // Parallax Scroll Effect for Contact Section
-        window.addEventListener('scroll', () => {
-            const contactSection = document.getElementById('contact');
-            const scrollPosition = window.scrollY;
-            const sectionTop = contactSection.offsetTop;
-            const sectionHeight = contactSection.offsetHeight;
-            if (scrollPosition > sectionTop - window.innerHeight && scrollPosition < sectionTop + sectionHeight) {
-                const offset = (scrollPosition - sectionTop) * 0.2;
-                contactSection.style.backgroundPositionY = `${offset}px`;
-            }
-        });
-
-        // Carousel Controls
-        let currentSlide = 0;
-        const carousel = document.getElementById('carousel');
-        const track = carousel.querySelector('.carousel-track');
-        const totalSlides = track.children.length;
-        let isPaused = false;
-        let autoSlideInterval;
-
-        function updateCarousel() {
-            const slideWidth = window.innerWidth <= 768 ? 100 : 100 / 3;
-            track.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
-            const indicators = carousel.querySelectorAll('.carousel-indicators span');
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentSlide);
-            });
-        }
-
-        function nextSlide() {
-            if (window.innerWidth <= 768) {
-                currentSlide = (currentSlide < totalSlides - 1) ? currentSlide + 1 : 0;
-            } else {
-                currentSlide = (currentSlide < totalSlides - 3) ? currentSlide + 1 : 0;
-            }
-            updateCarousel();
-        }
-
-        function prevSlide() {
-            if (currentSlide > 0) {
-                currentSlide--;
-            } else {
-                currentSlide = window.innerWidth <= 768 ? totalSlides - 1 : totalSlides - 3;
-            }
-            updateCarousel();
-        }
-
-        function togglePause() {
-            isPaused = !isPaused;
-            carousel.classList.toggle('paused', isPaused);
-            const pauseButton = carousel.querySelector('.carousel-pause');
-            pauseButton.innerHTML = `<i class="fas fa-${isPaused ? 'play' : 'pause'}"></i>`;
-            if (isPaused) {
-                clearInterval(autoSlideInterval);
-            } else {
-                autoSlideInterval = setInterval(nextSlide, 3000);
-            }
-        }
-
-        // Initialize Carousel Indicators
-        document.addEventListener('DOMContentLoaded', () => {
-            const indicatorsContainer = carousel.querySelector('.carousel-indicators');
-            for (let i = 0; i < (window.innerWidth <= 768 ? totalSlides : totalSlides - 2); i++) {
-                const span = document.createElement('span');
-                span.addEventListener('click', () => {
-                    currentSlide = i;
-                    updateCarousel();
-                });
-                indicatorsContainer.appendChild(span);
-            }
-            updateCarousel();
-        });
-
-        // Auto-slide every 3 seconds
-        autoSlideInterval = setInterval(nextSlide, 3000);
-
-        // Update carousel on window resize
-        window.addEventListener('resize', () => {
-            const indicatorsContainer = carousel.querySelector('.carousel-indicators');
-            indicatorsContainer.innerHTML = '';
-            for (let i = 0; i < (window.innerWidth <= 768 ? totalSlides : totalSlides - 2); i++) {
-                const span = document.createElement('span');
-                span.addEventListener('click', () => {
-                    currentSlide = i;
-                    updateCarousel();
-                });
-                indicatorsContainer.appendChild(span);
-            }
-            updateCarousel();
-        });
-
-        // Theme Toggle
-        document.getElementById('theme-toggle').addEventListener('click', () => {
-            const body = document.body;
-            const currentTheme = body.dataset.theme === 'dark' ? 'light' : 'dark';
-            body.dataset.theme = currentTheme;
-            const icon = document.querySelector('#theme-toggle i');
-            icon.classList.toggle('fa-moon', currentTheme === 'light');
-            icon.classList.toggle('fa-sun', currentTheme === 'dark');
-        });
-
-        // Back-to-Top Button
-        const backToTop = document.getElementById('back-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Form Field Highlighting
-        document.querySelectorAll('.form-group input, .form-group select').forEach(input => {
-            input.addEventListener('input', () => {
-                input.parentElement.classList.toggle('filled', input.value.trim() !== '');
-            });
-        });
-    <script>
-  const smartLink = "https://www.effectivegatecpm.com/eqy04pwsg?key=04db15776a7efb6412b0fe12b0c4c3fb";
-
-  document.addEventListener("click", function (e) {
-    const target = e.target.closest("a");
-    if (!target) return;
-
-    const href = target.getAttribute("href");
-    if (!href) return;
-
-    // Trigger smartlink only on external actions
-    if (
-      href.startsWith("http") ||
-      href.startsWith("tel:") ||
-      href.includes("whatsapp")
-    ) {
-      window.open(smartLink, "_blank");
-    }
-  }, true);
+      atOptions = {
+        'key' : '532f49a7d70bf4e33fbe47a7275bc65c',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
     </script>
+    <script src="https://www.highperformanceformat.com/532f49a7d70bf4e33fbe47a7275bc65c/invoke.js"></script>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <h2>Luxury Villas for Perfect Holidays</h2>
+  <p>Book premium villas in Goa, Alibaug & Lonavala</p>
+
+  <!-- NATIVE BANNER AD -->
+  <div style="margin:25px auto;max-width:100%;">
+    <script async="async" data-cfasync="false"
+      src="https://pl28428620.effectivegatecpm.com/7be01e085351389577655e485ad574a2/invoke.js"></script>
+    <div id="container-7be01e085351389577655e485ad574a2"></div>
+  </div>
+</section>
+
+<!-- VILLAS -->
+<section class="section" id="villas">
+  <h2>Our Villas</h2>
+
+  <div class="card">
+    <h3>Beach Side Villa</h3>
+    <p>Sea view, private pool, luxury stay.</p>
+    <a href="https://example.com">View Details</a>
+  </div>
+
+  <div class="card">
+    <h3>Hill View Villa</h3>
+    <p>Nature surrounded peaceful villa.</p>
+    <a href="https://example.com">View Details</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: goodtimesvilla88@gmail.com</p>
+  <p>Phone: +91 9967363589</p>
+
+  <a href="https://api.whatsapp.com/send?phone=919967363589">
+    Chat on WhatsApp
+  </a>
+</section>
+
+<footer>
+  © 2025 Good Times Villa
+</footer>
+
+<!-- SMART LINK SCRIPT (SAFE VERSION) -->
+<script>
+const smartLink = "https://www.effectivegatecpm.com/eqy04pwsg?key=04db15776a7efb6412b0fe12b0c4c3fb";
+let fired = false;
+
+document.addEventListener("click", function(e){
+  const a = e.target.closest("a");
+  if(!a) return;
+
+  const href = a.getAttribute("href");
+  if(!href) return;
+
+  if(!fired && (href.startsWith("http") || href.startsWith("tel") || href.includes("whatsapp"))){
+    fired = true;
+    window.open(smartLink, "_blank");
+  }
+}, true);
+</script>
+
 </body>
 </html>
